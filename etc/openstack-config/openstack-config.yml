@@ -63,6 +63,7 @@ openstack_image_cirros_0_6_0:
 # stackhpc.os-networks role.
 openstack_networks:
   - "{{ openstack_network_external }}"
+  - "{{ openstack_network_admin_geneve }}"
   - "{{ openstack_network_admin_vxlan }}"
   - "{{ openstack_network_admin_vlan }}"
   - "{{ openstack_network_admin_provider }}"
@@ -113,6 +114,30 @@ openstack_subnet_admin_vxlan:
   gateway_ip: "10.1.0.1"
   allocation_pool_start: "10.1.0.2"
   allocation_pool_end: "10.1.0.254"
+  
+
+# openstack admin geneve network name.
+openstack_network_admin_geneve_name: "admin-geneve"
+
+# openstack admin geneve network.
+openstack_network_admin_geneve:
+  name: "{{ openstack_network_admin_geneve_name }}"
+  project: admin
+  provider_network_type: "geneve"
+  shared: false
+  # Subnet configuration.
+  subnets:
+    - "{{ openstack_subnet_admin_geneve }}"
+
+# openstack admin geneve subnet.
+openstack_subnet_admin_geneve:
+  name: "{{ openstack_network_admin_geneve_name }}"
+  project: admin
+  cidr: "10.2.0.0/24"
+  gateway_ip: "10.2.0.1"
+  allocation_pool_start: "10.2.0.2"
+  allocation_pool_end: "10.2.0.254"
+
 
 # openstack admin VLAN network name.
 openstack_network_admin_vlan_name: "admin-vlan"
@@ -173,6 +198,7 @@ openstack_router_admin:
     interfaces:
       - "{{ openstack_network_admin_vlan_name }}"
       - "{{ openstack_network_admin_vxlan_name }}"
+      - "{{ openstack_network_admin_geneve_name }}"
       - "{{ openstack_network_admin_provider_name }}"
     network: "{{ openstack_network_external_name }}"
 
