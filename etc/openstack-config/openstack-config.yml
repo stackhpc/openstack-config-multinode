@@ -64,7 +64,7 @@ openstack_image_cirros_0_6_0:
 openstack_networks:
   - "{{ openstack_network_external }}"
   - "{{ openstack_network_admin_geneve }}"
-  - "{{ openstack_network_admin_vxlan }}"
+  # - "{{ openstack_network_admin_vxlan }}"
   - "{{ openstack_network_admin_vlan }}"
   - "{{ openstack_network_admin_provider }}"
 
@@ -94,26 +94,26 @@ openstack_subnet_external:
   allocation_pool_end: "192.168.38.254"
 
 # openstack admin VXLAN network name.
-openstack_network_admin_vxlan_name: "admin-vxlan"
+# openstack_network_admin_vxlan_name: "admin-vxlan"
 
 # openstack admin VXLAN network.
-openstack_network_admin_vxlan:
-  name: "{{ openstack_network_admin_vxlan_name }}"
-  project: admin
-  provider_network_type: "vxlan"
-  shared: false
-  # Subnet configuration.
-  subnets:
-    - "{{ openstack_subnet_admin_vxlan }}"
+# openstack_network_admin_vxlan:
+#   name: "{{ openstack_network_admin_vxlan_name }}"
+#   project: admin
+#   provider_network_type: "vxlan"
+#   shared: false
+#   # Subnet configuration.
+#   subnets:
+#     - "{{ openstack_subnet_admin_vxlan }}"
 
 # openstack admin VXLAN subnet.
-openstack_subnet_admin_vxlan:
-  name: "{{ openstack_network_admin_vxlan_name }}"
-  project: admin
-  cidr: "10.1.0.0/24"
-  gateway_ip: "10.1.0.1"
-  allocation_pool_start: "10.1.0.2"
-  allocation_pool_end: "10.1.0.254"
+# openstack_subnet_admin_vxlan:
+#   name: "{{ openstack_network_admin_vxlan_name }}"
+#   project: admin
+#   cidr: "10.1.0.0/24"
+#   gateway_ip: "10.1.0.1"
+#   allocation_pool_start: "10.1.0.2"
+#   allocation_pool_end: "10.1.0.254"
   
 
 # openstack admin geneve network name.
@@ -123,7 +123,7 @@ openstack_network_admin_geneve_name: "admin-geneve"
 openstack_network_admin_geneve:
   name: "{{ openstack_network_admin_geneve_name }}"
   project: admin
-  provider_network_type: "geneve"
+  # provider_network_type: "geneve"
   shared: false
   # Subnet configuration.
   subnets:
@@ -197,7 +197,7 @@ openstack_router_admin:
     project: admin
     interfaces:
       - "{{ openstack_network_admin_vlan_name }}"
-      - "{{ openstack_network_admin_vxlan_name }}"
+      # - "{{ openstack_network_admin_vxlan_name }}"
       - "{{ openstack_network_admin_geneve_name }}"
       - "{{ openstack_network_admin_provider_name }}"
     network: "{{ openstack_network_external_name }}"
