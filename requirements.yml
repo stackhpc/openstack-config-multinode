@@ -9,3 +9,4 @@ roles:
 
 collections:
   - name: openstack.cloud
+    version: 1.10.0

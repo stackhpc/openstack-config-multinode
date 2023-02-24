@@ -88,7 +88,7 @@ openstack_subnet_external:
   name: "{{ openstack_network_external_name }}"
   project: "admin"
   cidr: "192.168.38.0/24"
-  no_gateway_ip: true
+  gateway_ip: "192.168.38.3"
   allocation_pool_start: "192.168.38.129"
   allocation_pool_end: "192.168.38.254"
 
