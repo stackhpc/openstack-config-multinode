@@ -1,2 +1,2 @@
 # Use Ansible 2.12 for consistent Rocky 9 behaviour
-ansible-core>=2.12,<2.13
+ansible>=4,<5
