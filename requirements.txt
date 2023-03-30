@@ -1,2 +1,2 @@
 # Use Ansible 2.12 for consistent Rocky 9 behaviour
-ansible>=4,<5
+ansible>=5,<6
