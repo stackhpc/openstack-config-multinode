@@ -2,5 +2,6 @@
 collections:
   - name: openstack.cloud
     version: 2.4.1
-  - name: stackhpc.openstack
-    version: 0.2.4
+  - name: https://github.com/stackhpc/ansible-collection-openstack.git
+    type: git
+    version: master-test
