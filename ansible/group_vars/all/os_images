@@ -1,0 +1,4 @@
+---
+# Whether to enable the CRB repository and install the EPEL repository before
+# installing packages. Default is false
+os_images_install_epel_repo: true
