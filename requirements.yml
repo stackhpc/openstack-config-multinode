@@ -3,4 +3,5 @@ collections:
   - name: openstack.cloud
     version: 2.4.1
   - name: stackhpc.openstack
-    version: 0.4.2
+    type: git
+    version: debootstrap
