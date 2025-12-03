@@ -20,6 +20,7 @@
     - name: Fetch dependencies.json for capi-helm-charts release
       ansible.builtin.uri:
         url: https://raw.githubusercontent.com/azimuth-cloud/capi-helm-charts/{{ capi_helm_chart_release_data.json.tag_name }}/dependencies.json
+        return_content: true
       register: dependencies_response
 
     - name: Ensure wget packages is installed
@@ -29,12 +30,14 @@
         state: present
 
     - name: Fetch manifest.json for capi-helm-charts images  # noqa command-instead-of-module
+      vars:
+        dependencies: "{{ dependencies_response.content }}"
     # ansible.builtin.uri:
     #   url: https://raw.githubusercontent.com/azimuth-cloud/azimuth-images/{{ dependencies_response.json['azimuth-images'] }}/manifest.json
     # Above URL returns 404 even though similar URL for capi-helm-charts repo works fine
     # Not sure why but fall back to wget + JSON parsing for now.
       ansible.builtin.command: >-
-        wget -O - https://github.com/azimuth-cloud/azimuth-images/releases/download/{{ dependencies_response.json['azimuth-images'] }}/manifest.json
+        wget -O - https://github.com/azimuth-cloud/azimuth-images/releases/download/{{ dependencies['azimuth-images'] }}/manifest.json
       register: manifest_response
       changed_when: false
 

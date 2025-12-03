@@ -93,12 +93,17 @@ variables in `etc/openstack-config.yml`
    magnum_default_worker_flavor_name:
    # External network to use for load balancers etc.
    magnum_external_net_name:
-   # Octavia provider (e.g. 'ovn')
-   magnum_loadbalancer_provider:
    # Optional list of extra labels to add to all generated cluster templates
    magnum_template_extra_labels:
 
-then run the provided playbook with
+The load balancer provider defaults to OVN. This can be changed to Amphora, but you
+should only do this if OVN load balancers are unavailable.
+
+.. code-block:: yaml
+
+   magnum_loadbalancer_provider: amphora
+
+Then run the provided playbook with
 
 .. code-block:: bash
 
@@ -112,3 +117,7 @@ be sure to run the ``openstack-images.yml`` playbook *before* running the
 ``openstack-container-clusters.yml`` playbook, otherwise the Magnum API will return
 an error referencing an invalid cluster type with image ``None``. This is handled
 automatically if running the full ``openstack.yml`` playbook.
+
+Note that these templates are a tested set against the specific CAPI management
+cluster release. As such, you should make sure to update your CAPI management
+cluster to the latest release before updating to the latest templates.

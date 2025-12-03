@@ -1,5 +1,5 @@
 ---
-- name: Ensure OpenStack OpenStack projects exist
+- name: Ensure OpenStack projects exist
   hosts: localhost
   tags:
     - project

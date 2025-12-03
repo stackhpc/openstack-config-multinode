@@ -1,5 +1,5 @@
 ---
-- name: Ensure OpenStack OpenStack nova host aggregates exist
+- name: Ensure OpenStack nova host aggregates exist
   hosts: localhost
   tags:
     - host_aggregates

@@ -15,7 +15,7 @@
     kube_dashboard_enabled: "true"
     keystone_auth_enabled: "false"
     capi_helm_chart_version: "{{ capi_helm_chart_release_data.json.tag_name }}"
-    octavia_provider: {{ magnum_loadbalancer_provider }}
+    octavia_provider: {{ magnum_loadbalancer_provider | default('ovn') }}
 {% if magnum_template_extra_labels is defined and magnum_template_extra_labels is not none %}
     {{ magnum_template_extra_labels | to_nice_yaml | indent(4) -}}
 {% endif %}

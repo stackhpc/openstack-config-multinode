@@ -17,8 +17,8 @@ os_images_force_rebuild: false
 openstack_images:
   - "{{ openstack_image_centos_stream8 }}"
   - "{{ openstack_image_cirros_0_6_0 }}"
-  - "{{ openstack_image_rocky8 }}"
-  - "{{ openstack_image_ubuntu_focal }}"
+  - "{{ openstack_image_rocky9 }}"
+  - "{{ openstack_image_ubuntu_jammy }}"
 
 # Common GRUB settings for VM images
 openstack_grub_env_common:
@@ -53,6 +53,7 @@ openstack_image_centos_stream8:
     os_distro: "centos"
     os_version: "8-stream"
     hw_rng_model: "virtio"
+    hw_architecture: "x86_64"
 
 # Cirros 0.6.0
 openstack_image_cirros_0_6_0:
@@ -66,10 +67,11 @@ openstack_image_cirros_0_6_0:
     os_distro: "cirros"
     os_version: "0.6.0"
     hw_rng_model: "virtio"
+    hw_architecture: "x86_64"
 
-# Rocky Linux 8.
-openstack_image_rocky8:
-  name: "Rocky8"
+# Rocky Linux 9.
+openstack_image_rocky9:
+  name: "Rocky9"
   type: raw
   elements:
     # Required for UEFI mode:
@@ -95,16 +97,17 @@ openstack_image_rocky8:
     YUM: dnf
     DIB_CONTAINERFILE_RUNTIME: docker
     DIB_CONTAINERFILE_RUNTIME_ROOT: 1
-    DIB_RELEASE: "8"
+    DIB_RELEASE: "9"
   properties:
     os_type: "linux"
     os_distro: "rocky"
-    os_version: "8"
+    os_version: "9"
     hw_rng_model: "virtio"
+    hw_architecture: "x86_64"
 
-# Ubuntu Focal 20.04.
-openstack_image_ubuntu_focal:
-  name: "Ubuntu-20.04"
+# Ubuntu Jammy 22.04.
+openstack_image_ubuntu_jammy:
+  name: "Ubuntu-22.04"
   type: raw
   is_public: true
   elements:
@@ -124,8 +127,9 @@ openstack_image_ubuntu_focal:
   properties:
     os_type: "linux"
     os_distro: "ubuntu"
-    os_version: "focal"
+    os_version: "jammy"
     hw_rng_model: "virtio"
+    hw_architecture: "x86_64"
   env:
-    DIB_RELEASE: "focal"
+    DIB_RELEASE: "jammy"
     DIB_CLOUD_INIT_DATASOURCES: "ConfigDrive"

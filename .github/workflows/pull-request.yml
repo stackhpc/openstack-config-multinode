@@ -4,6 +4,7 @@ name: Pull request
   pull_request:
 jobs:
   lint:
+    if: github.repository == 'stackhpc/openstack-config'
     runs-on: ubuntu-22.04
     permissions: {}
     strategy:

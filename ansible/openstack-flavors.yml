@@ -1,5 +1,5 @@
 ---
-- name: Ensure OpenStack OpenStack nova flavors exist
+- name: Ensure OpenStack nova flavors exist
   hosts: localhost
   tags:
     - flavors

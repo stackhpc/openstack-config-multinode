@@ -1,5 +1,5 @@
 ---
-- name: Ensure OpenStack OpenStack networks exist
+- name: Ensure OpenStack networks exist
   hosts: localhost
   tags:
     - networks
